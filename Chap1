@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body>
+
+    <?php
+        include_once("lib/libmain.php");
+    
+        pro_dump();
+    
+        $server_name    = "localhost";
+        $u_name         = "root";
+        $p_word         = "rtt234egs";
+    
+        // Create DB Connection
+        $connection     = new mysqli($server_name, $u_name, $p_word);
+        pro_dump($connection);
+        
+        /*
+         *  DB Object
+         *
+         *  Extend mysqli obj
+         *
+         *  Connect
+         *  Close
+         *  Check for Error Connecting
+         *  Check for Timeout
+         *
+         *  Create DB
+         *  Create DB Table
+         *
+         *  Delete DB
+         *  Delete DB Table
+         *
+         *  Edit DB
+         *  Edit DB Table
+         *
+         *  Query DB
+         *  Query DB Table
+         */
+
+        // Check Connection
+        if($connection->connect_error)
+        {
+            die("Connection Failed" . $connect_error);
+        }
+        echo "Connection Successful";
+        
+        // Close Connection
+        $connection->close();
+        pro_dump($connection);
+
+        //Create DB
+        $sql = "CREATE DATABASE myDB";
+        if($connection->query($sql) == TRUE)
+        {
+            echo "Database created Sucessfully";
+        }  
+        else
+        {
+            echo "Error creating DB:" . $connection->error;
+        }
+
+        $connection->close;
+
+
+
+
+    ?>
+    
+</body>
+</html>
